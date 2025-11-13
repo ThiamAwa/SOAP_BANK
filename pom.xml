@@ -172,7 +172,16 @@
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web-services</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>wsdl4j</groupId>
+        <artifactId>wsdl4j</artifactId>
+      </dependency>
+
+      <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
             <version>${springdoc-openapi-starter-webmvc-api.version}</version>
@@ -304,6 +313,12 @@
             <artifactId>testcontainers</artifactId>
             <scope>test</scope>
         </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>5.3.30</version>
+      </dependency>
+
     </dependencies>
 
     <build>
@@ -336,7 +351,30 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
             </plugin>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>jaxb2-maven-plugin</artifactId>
+            <version>3.3.0</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>xjc</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <sources>
+                <schemaDirectory>
+                  ${project.basedir}/src/main/resources/schema
+                </schemaDirectory>
+              </sources>
+              <packageName>com.groupeisi.m2gl.entities</packageName>
+              <clearOutputDir>false</clearOutputDir>
+            </configuration>
+          </plugin>
             <plugin>
+
+
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
             </plugin>
@@ -388,16 +426,16 @@
                     <artifactId>maven-checkstyle-plugin</artifactId>
                     <version>${maven-checkstyle-plugin.version}</version>
                     <dependencies>
-                        <dependency>
-                            <groupId>com.puppycrawl.tools</groupId>
-                            <artifactId>checkstyle</artifactId>
-                            <version>${checkstyle.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>io.spring.nohttp</groupId>
-                            <artifactId>nohttp-checkstyle</artifactId>
-                            <version>${nohttp-checkstyle.version}</version>
-                        </dependency>
+<!--                        <dependency>-->
+<!--                            <groupId>com.puppycrawl.tools</groupId>-->
+<!--                            <artifactId>checkstyle</artifactId>-->
+<!--                            <version>${checkstyle.version}</version>-->
+<!--                        </dependency>-->
+<!--                        <dependency>-->
+<!--                            <groupId>io.spring.nohttp</groupId>-->
+<!--                            <artifactId>nohttp-checkstyle</artifactId>-->
+<!--                            <version>${nohttp-checkstyle.version}</version>-->
+<!--                        </dependency>-->
                     </dependencies>
                     <configuration>
                         <configLocation>checkstyle.xml</configLocation>
@@ -660,11 +698,11 @@
                         </pluginExtensions>
                     </configuration>
                     <dependencies>
-                        <dependency>
-                            <groupId>com.google.cloud.tools</groupId>
-                            <artifactId>jib-spring-boot-extension-maven</artifactId>
-                            <version>0.1.0</version>
-                        </dependency>
+<!--                        <dependency>-->
+<!--                            <groupId>com.google.cloud.tools</groupId>-->
+<!--                            <artifactId>jib-spring-boot-extension-maven</artifactId>-->
+<!--                            <version>0.1.0</version>-->
+<!--                        </dependency>-->
                     </dependencies>
                 </plugin>
                 <plugin>
@@ -783,11 +821,11 @@
                             <artifactId>liquibase-core</artifactId>
                             <version>${liquibase.version}</version>
                         </dependency>
-                        <dependency>
-                            <groupId>org.liquibase.ext</groupId>
-                            <artifactId>liquibase-hibernate6</artifactId>
-                            <version>${liquibase.version}</version>
-                        </dependency>
+<!--                        <dependency>-->
+<!--                            <groupId>org.liquibase.ext</groupId>-->
+<!--                            <artifactId>liquibase-hibernate6</artifactId>-->
+<!--                            <version>${liquibase.version}</version>-->
+<!--                        </dependency>-->
                         <dependency>
                             <groupId>jakarta.validation</groupId>
                             <artifactId>jakarta.validation-api</artifactId>
@@ -963,15 +1001,15 @@
                 <spring.profiles.active>prod${profile.api-docs}${profile.tls}${profile.e2e}${profile.no-liquibase}</spring.profiles.active>
             </properties>
             <dependencies>
-                <dependency>
-                    <groupId>com.mysql</groupId>
-                    <artifactId>mysql-connector-j</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>org.testcontainers</groupId>
-                    <artifactId>mysql</artifactId>
-                    <scope>test</scope>
-                </dependency>
+<!--                <dependency>-->
+<!--                    <groupId>com.mysql</groupId>-->
+<!--                    <artifactId>mysql-connector-j</artifactId>-->
+<!--                </dependency>-->
+<!--                <dependency>-->
+<!--                    <groupId>org.testcontainers</groupId>-->
+<!--                    <artifactId>mysql</artifactId>-->
+<!--                    <scope>test</scope>-->
+<!--                </dependency>-->
             </dependencies>
             <build>
                 <plugins>
@@ -1024,10 +1062,10 @@
                     <groupId>io.micrometer</groupId>
                     <artifactId>micrometer-tracing-bridge-brave</artifactId>
                 </dependency>
-                <dependency>
-                    <groupId>io.zipkin.reporter2</groupId>
-                    <artifactId>zipkin-reporter-brave</artifactId>
-                </dependency>
+<!--                <dependency>-->
+<!--                    <groupId>io.zipkin.reporter2</groupId>-->
+<!--                    <artifactId>zipkin-reporter-brave</artifactId>-->
+<!--                </dependency>-->
             </dependencies>
         </profile>
     </profiles>
